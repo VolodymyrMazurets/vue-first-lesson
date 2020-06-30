@@ -6,6 +6,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "*",
+    redirect: "/",
+  },
+  {
     path: "/",
     name: "Home",
     component: Home,
@@ -29,6 +33,20 @@ const routes = [
     name: "Buttons",
     component: () =>
       import(/* webpackChunkName: "buttons" */ "@/views/Buttons.vue"),
+  },
+  {
+    path: "/json-placeholder",
+    name: "JsonPlaceholder",
+    component: () =>
+      import(/* webpackChunkName: "buttons" */ "@/views/JsonPlaceholder.vue"),
+    children: [
+      {
+        path: "details/:id",
+        name: "PostDetails",
+        component: () =>
+          import(/* webpackChunkName: "postDetails" */ "../views/PostDetails.vue"),
+      },
+    ],
   },
   {
     path: "/about",
